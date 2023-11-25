@@ -19,7 +19,6 @@ public class Grafo {
 
 
     public Grafo() {
-        inicializarMatrizAdyacencia();
         cantidadVertices = 50; // Inicializar la cantidad de vértices en 0
         this.matrizAdyacencia = new int[cantidadVertices][cantidadVertices];
         vertices = new ArrayList<>();
@@ -42,7 +41,7 @@ public class Grafo {
         edges.add(newEdge);
         return newEdge;
     }
-  
+
     // ---------------------------------------------------------------------------------------------------//
     public List<Position> dijkstra(Vertice inicio, Vertice fin) {
         // Inicializar distancias y visitados
@@ -100,8 +99,7 @@ public class Grafo {
     }
 
     // ---------------------------------------------------------------------------------------------------//
-    
-=======
+
     // ---------------------------------------------------------------------------------------------------//
     
     public Vertice getVertice(int id) {
@@ -150,10 +148,10 @@ public class Grafo {
         }
 
         // Añadir la posición del último vértice al camino
-        camino.add(vertices.get(verticeFin).getPosicion())
+        camino.add(vertices.get(verticeFin).getPosicion());
           return camino;
     }
-    // ---------------------------------------------------------------------------------------------------//
+
     public void imprimirCamino(List<Position> camino) {
         System.out.println("Camino desde el inicio hasta el final:");
         for (Position posicion : camino) {
