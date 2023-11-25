@@ -13,6 +13,7 @@ public class Vertice {
         return id;
     }
 
+
     public Position getPosicion() {
         return posicion;
     }

@@ -19,7 +19,7 @@ public class Bricks extends Drawing{
     public int getWidth(){
         return this.width;
     }
-    public int getHeigh(){
+    public int getHeight(){
         return this.heigh;
     }
     @Override

@@ -1,6 +1,6 @@
 package com.example.animationsgame.model;
 
-public class Position {
+public class   Position {
     private double x;
     private double y;
 
@@ -24,6 +24,7 @@ public class Position {
     public void setY(double y) {
         this.y = y;
     }
+
 
 
 }

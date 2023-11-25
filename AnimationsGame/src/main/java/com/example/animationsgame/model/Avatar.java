@@ -11,12 +11,12 @@ import java.util.List;
 import java.util.Random;
 
 public class Avatar<T extends Position> {
-    public static final String PATH_IDLE="/animations/hero/idle/idle";
-    public static final String PATH_RIGHT="/animations/hero/right/right";
-    public static final String PATH_LEFT="/animations/hero/left/left";
-    public static final String PATH_UP="/animations/hero/up/up";
+    public static final String PATH_IDLE = "/animations/hero/idle/G";
+    public static final String PATH_RIGHT = "/animations/hero/right/right";
+    public static final String PATH_LEFT = "/animations/hero/left/left";
+    public static final String PATH_UP = "/animations/hero/up/up";
 
-    public static final String PATH_DOWN="/animations/hero/down/down";
+    public static final String PATH_DOWN = "/animations/hero/down/down";
 
     private final int width;
     private final int height;
@@ -35,7 +35,7 @@ public class Avatar<T extends Position> {
 
     private boolean rightPressed;
 
-    private  boolean leftPressed;
+    private boolean leftPressed;
 
     private boolean upPressed;
 
@@ -48,18 +48,15 @@ public class Avatar<T extends Position> {
     private Position position;
 
     private State state;
-
-    private int pasoActual;
-    private static final double MOVEMENT_SPEED = 10.0;
-    private List<Position> caminoMasCorto; // Lista de coordenadas en el camino más corto
-
+    private double previousX;
+    private double previousY;
 
 
     public Avatar(Canvas canvas) {
         this.canvas = canvas;
         this.graphicsContext = this.canvas.getGraphicsContext2D();
-        this.width = 80;
-        this.height = 80;
+        this.width = 50;
+        this.height = 50;
         this.state = State.IDLE;
 
         this.frame = 0;
@@ -70,22 +67,39 @@ public class Avatar<T extends Position> {
         this.up = new ArrayList<>();
         this.down = new ArrayList<>();
 
-        this.position = new Position(100, 100);
+        this.position = new Position(400, 300);
 
-        for (int i = 1; i <= 9; i++) {
-            Image image = new Image(getClass().getResourceAsStream(PATH_IDLE+ i + ".png"),80,80,false,false);
+        this.previousX = position.getX();
+        this.previousY = position.getY();
+
+        for (int i = 1; i <= 4; i++) {
+            Image image = new Image(getClass().getResourceAsStream(PATH_IDLE + i + ".png"), 80, 80, false, false);
             this.idles.add(image);
+        }
+        for (int i = 1; i <= 12; i++) {
+            Image image = new Image(getClass().getResourceAsStream(PATH_RIGHT + i + ".png"), 80, 80, false, false);
+            this.right.add(image);
+        }
+        for (int i = 1; i <= 12; i++) {
+            Image image = new Image(getClass().getResourceAsStream(PATH_LEFT + i + ".png"), 80, 80, false, false);
+            this.left.add(image);
+        }
+        for (int i = 1; i <= 12; i++) {
+            Image image = new Image(getClass().getResourceAsStream(PATH_DOWN + i + ".png"), 80, 80, false, false);
+            this.down.add(image);
+        }
+        for (int i = 1; i <= 12; i++) {
+            Image image = new Image(getClass().getResourceAsStream(PATH_UP + i + ".png"), 80, 80, false, false);
+            this.up.add(image);
         }
     }
 
 
     public void paint() {
-        onMove();
-        if (state == State.IDLE) {
-            graphicsContext.drawImage(idles.get(frame % 9), position.getX(), position.getY());
-            frame++;
-        }
+        graphicsContext.drawImage(idles.get(frame % 4), position.getX(), position.getY());
+        frame++;
     }
+
     public void moverEnCaminoMasCorto(List<Position> caminoMasCorto) {
         if (caminoMasCorto != null && !caminoMasCorto.isEmpty()) {
             Position siguientePaso = caminoMasCorto.remove(0);
@@ -93,66 +107,8 @@ public class Avatar<T extends Position> {
             position.setY(siguientePaso.getY());
         }
     }
-    public void onKeyPressed(KeyEvent event) {
-        switch (event.getCode()) {
-            case D -> {
-                state = State.IDLE;
-                rightPressed = true;
-            }
-            case A -> {
-                state = State.IDLE;
-                leftPressed = true;
-            }
-            case S -> {
-                state = State.IDLE;
-                downPressed = true;
-            }
-            case W -> {
-                state = State.IDLE;
-                upPressed = true;
-            }
-        }
-    }
 
-    public void onKeyReleased(KeyEvent event) {
-        switch (event.getCode()) {
-            case D -> {
-                state = State.IDLE;
-                rightPressed = false;
-            }
-            case A-> {
-                state = State.IDLE;
-                leftPressed = false;
-            }
-            case S -> {
-                state = State.IDLE;
-                downPressed = false;
-            }
-            case W-> {
-                state = State.IDLE;
-                upPressed = false;
-            }
-        }
-    }
-    public void onMove() {
-        if (rightPressed) {
-            position.setX(position.getX() + 5);
-        }
 
-        if (leftPressed) {
-            position.setX(position.getX() - 5);
-        }
-
-        if (upPressed) {
-            position.setY(position.getY() - 5);
-        }
-
-        if (downPressed) {
-            position.setY(position.getY() + 5);
-        }
-        // Imprimir la posición en la consola
-        System.out.println("Posición actual del avatar: X = " + position.getX() + ", Y = " + position.getY());
-    }
 
     public Position getPosition() {
         return position;
@@ -169,4 +125,13 @@ public class Avatar<T extends Position> {
     public int getHeight() {
         return height;
     }
+
+    public double getPreviousX() {
+        return previousX;
+    }
+
+    public double getPreviousY() {
+        return previousY;
+    }
+
 }

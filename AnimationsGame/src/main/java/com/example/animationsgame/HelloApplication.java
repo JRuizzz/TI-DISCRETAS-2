@@ -24,8 +24,7 @@ public class HelloApplication extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource(path));
             Scene scene = new Scene(fxmlLoader.load(),1520 ,770);
             Stage stage = new Stage();
-
-            stage.setTitle("LUNATIK420");
+            stage.setTitle("GRAPH BALL Z");
             String uri = HelloApplication.class.getResource("/cursorAlien/CursorAlien.png").toExternalForm();
             Cursor cursor = Cursor.cursor(uri);
             scene.setCursor(cursor);

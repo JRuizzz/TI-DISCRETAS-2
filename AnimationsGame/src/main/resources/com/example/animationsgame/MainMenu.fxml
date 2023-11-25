@@ -22,7 +22,7 @@
                 <Font name="Bodoni MT Black" size="35.0" />
             </font>
         </Label>
-        <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="497.0" layoutY="105.0" prefHeight="59.0" prefWidth="561.0" styleClass="label2" text="LUNATIK 420" textFill="#ab2f2f">
+        <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="494.0" layoutY="30.0" prefHeight="59.0" prefWidth="561.0" styleClass="label2" text="GRAPH BALL Z" textFill="#ab2f2f">
         </Label>
     </children>
 </AnchorPane>

@@ -31,30 +31,22 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         this.graphicsContext = canvas.getGraphicsContext2D();
         this.screenA = new ScreenA(this.canvas);
-        this.canvas.setOnKeyPressed(this::handleKeyPressed);
-        this.canvas.setOnKeyReleased(this::handleKeyReleased);
+
+
         new Thread(
-                ()->{
-                    while (true){
-                        Platform.runLater( () ->{
+                () -> {
+                    while (true) {
+                        Platform.runLater(() -> {
                             screenA.paint();
                         });
                         try {
-                            Thread.sleep(80);
-                        } catch (InterruptedException e){
+                            Thread.sleep(500);
+                        } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
                     }
                 }
         ).start();
 
-    }
-
-    private void handleKeyPressed(KeyEvent event) {
-        screenA.onKeyPressed(event);
-    }
-
-    private void handleKeyReleased(KeyEvent event) {
-        screenA.onKeyReleased(event);
     }
 }
