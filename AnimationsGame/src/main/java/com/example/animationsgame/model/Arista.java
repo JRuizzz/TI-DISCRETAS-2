@@ -1,35 +1,40 @@
 package com.example.animationsgame.model;
 
-public class Arista<V extends Vertice> {
-    private V v1;
-    private V v2;
+public class Arista {
+    private Vertice v1;
+    private Vertice v2;
     private int peso;
 
-    public Arista(V v1, V v2, int peso) {
+    public Arista(Vertice v1, Vertice v2, int peso) {
         this.v1 = v1;
         this.v2 = v2;
         this.peso = peso;
     }
 
-    public boolean hasVertex(V vertex) {
-        return v1 == vertex || v2 == vertex;
-    }
-
-    public V getOtherVertex(V vertex) {
-        if (vertex == v1) {
+    public Vertice getOtroVertice(Vertice vertice) {
+        if (vertice.equals(v1)) {
             return v2;
-        } else if (vertex == v2) {
+        } else if (vertice.equals(v2)) {
             return v1;
         } else {
-            return null;
+            // Manejar el caso en el que el vértice no pertenece a la arista
+            throw new IllegalArgumentException("El vértice no pertenece a esta arista.");
         }
     }
 
-    public V getOtroExtremo(V vertex) {
-        return getOtherVertex(vertex);
+    public boolean hasVertex(Vertice vertice) {
+        return vertice.equals(v1) || vertice.equals(v2);
     }
 
     public int getPeso() {
         return peso;
+    }
+
+    public Vertice getV1() {
+        return v1;
+    }
+
+    public Vertice getV2() {
+        return v2;
     }
 }

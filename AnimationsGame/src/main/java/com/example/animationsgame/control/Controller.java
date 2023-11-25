@@ -40,7 +40,7 @@ public class Controller implements Initializable {
                             screenA.paint();
                         });
                         try {
-                            Thread.sleep(80);
+                            Thread.sleep(150);
                         } catch (InterruptedException e){
                             e.printStackTrace();
                         }

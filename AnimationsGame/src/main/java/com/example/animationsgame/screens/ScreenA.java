@@ -48,7 +48,7 @@ public class ScreenA {
         graphicsContext.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         drawMapObstacles();
         avatar.paint();
-        //avatar.moverEnCaminoMasCorto(caminoMasCorto);  // Corregido aquí
+        avatar.moverEnCaminoMasCorto(caminoMasCorto);  // Corregido aquí
     }
 
 
@@ -73,8 +73,8 @@ public class ScreenA {
         Vertice v4 = grafo.agregarVertice(4, 500, 500);
 
         // Establecer conexiones para cada vértice
-        grafo.agregarArista(v0, v1, 1);
-        grafo.agregarArista(v1, v0, 1);
+        grafo.agregarArista(v0, v1, 0);
+        grafo.agregarArista(v1, v0, 0);
         grafo.agregarArista(v0, v2, 2);
         grafo.agregarArista(v2, v0, 2);
         grafo.agregarArista(v1, v3, 3);
@@ -86,8 +86,9 @@ public class ScreenA {
         Vertice fin = v3;
 
         // Calcular el camino más corto usando el algoritmo de Dijkstra
-        List<Position> camino = grafo.dijkstra(inicio, fin);
 
+        List<Position> camino = grafo.dijkstra(inicio, fin);
+        grafo.imprimirCamino(camino);
         return camino;
         // Imprimir el camino
        // grafo.imprimirCamino(camino);
