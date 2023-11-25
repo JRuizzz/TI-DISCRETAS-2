@@ -19,7 +19,8 @@ public class Grafo {
 
 
     public Grafo() {
-        cantidadVertices = 5; // Inicializar la cantidad de vértices en 0
+        inicializarMatrizAdyacencia();
+        cantidadVertices = 50; // Inicializar la cantidad de vértices en 0
         this.matrizAdyacencia = new int[cantidadVertices][cantidadVertices];
         vertices = new ArrayList<>();
         edges = new ArrayList<>();
@@ -41,8 +42,7 @@ public class Grafo {
         edges.add(newEdge);
         return newEdge;
     }
-
-
+  
     // ---------------------------------------------------------------------------------------------------//
     public List<Position> dijkstra(Vertice inicio, Vertice fin) {
         // Inicializar distancias y visitados
@@ -100,6 +100,19 @@ public class Grafo {
     }
 
     // ---------------------------------------------------------------------------------------------------//
+    
+=======
+    // ---------------------------------------------------------------------------------------------------//
+    
+    public Vertice getVertice(int id) {
+        for (Vertice vertice : vertices) {
+            if (vertice.getId() == id) {
+                return vertice;
+            }
+        }
+        return null; 
+    }
+    // ---------------------------------------------------------------------------------------------------//
     public List<Position> floydWarshall(Vertice inicio, Vertice fin) {
         int n = cantidadVertices;
 
@@ -114,7 +127,6 @@ public class Grafo {
             }
         }
 
-        // Calcular los caminos más cortos entre todos los pares de vértices
         for (int k = 0; k < n; k++) {
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) {
@@ -127,21 +139,20 @@ public class Grafo {
             }
         }
 
-        // Reconstruir el camino desde el inicio hasta el fin
+        // Reconstruir el camino desde inicio hasta fin
         List<Position> camino = new ArrayList<>();
-        int verticeActual = inicio.getId(); // Comenzar desde el vértice de inicio
+        int verticeInicio = inicio.getId();
+        int verticeFin = fin.getId();
 
-        while (verticeActual != fin.getId()) {
-            camino.add(vertices.get(fin.getId()).getPosicion());
-
-            // Mover al siguiente vértice en el camino más corto
-            verticeActual = intermedios[verticeActual][fin.getId()];
+        while (verticeInicio != verticeFin) {
+            camino.add(vertices.get(verticeInicio).getPosicion());
+            verticeInicio = intermedios[verticeInicio][verticeFin];
         }
 
-        return camino;
+        // Añadir la posición del último vértice al camino
+        camino.add(vertices.get(verticeFin).getPosicion())
+          return camino;
     }
-
-
     // ---------------------------------------------------------------------------------------------------//
     public void imprimirCamino(List<Position> camino) {
         System.out.println("Camino desde el inicio hasta el final:");
@@ -149,7 +160,6 @@ public class Grafo {
             System.out.println("la posicion es" +"["+posicion.getX()+"]" + "["+posicion.getY()+"]");
         }
     }
-
 
     public int getCantidadVertices() {
         return cantidadVertices;
@@ -163,6 +173,3 @@ public class Grafo {
         return edges;
     }
 }
-
-
-

@@ -23,7 +23,6 @@ public class Vertice {
     public int getY() {
         return y;
     }
-
     public Position getPosicion() {
         return posicion;
     }

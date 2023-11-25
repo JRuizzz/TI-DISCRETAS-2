@@ -43,7 +43,7 @@ public class MainMenu implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Image image = new Image("file:"+ HelloApplication.class.getResource("MenuPrincipal Image/Menu.png").getPath());
+        Image image = new Image("file:"+ HelloApplication.class.getResource("MenuPrincipal Image/Menu1.png").getPath());
         gc = canvas.getGraphicsContext2D();
         canvas.setFocusTraversable(true);
         gc.drawImage(image,0,0,canvas.getWidth(),canvas.getHeight());
