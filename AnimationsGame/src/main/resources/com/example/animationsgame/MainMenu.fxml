@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.animationsgame.screens.MainMenu">
+    <children>
+        <Canvas fx:id="canvas" height="780.0" width="1520.0" AnchorPane.leftAnchor="0.0" />
+        <VBox alignment="CENTER" layoutX="179.0" layoutY="539.0" prefHeight="137.0" prefWidth="1163.0" spacing="32.0" AnchorPane.bottomAnchor="-76.0" AnchorPane.leftAnchor="179.0" AnchorPane.rightAnchor="178.0" AnchorPane.topAnchor="539.0">
+            <children>
+                <Label fx:id="playBT" alignment="BASELINE_CENTER" contentDisplay="CENTER" onMouseClicked="#playGame" onMouseEntered="#mouseEnteredPlay" onMouseExited="#mouseExitedPlay" prefHeight="19.0" prefWidth="242.0" styleClass="label" text="PLAY" textFill="#a4468d">
+                    <font>
+                        <Font name="Bodoni MT Black" size="45.0" />
+                    </font>
+                </Label>
+            </children>
+        </VBox>
+        <Label fx:id="exitBT" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="14.0" onMouseClicked="#exitProgram" onMouseEntered="#mouseEnteredExit" onMouseExited="#mouseExitedExit" prefHeight="43.0" prefWidth="148.0" styleClass="label" text="EXIT" textFill="#a4468d">
+            <font>
+                <Font name="Bodoni MT Black" size="35.0" />
+            </font>
+        </Label>
+        <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="497.0" layoutY="105.0" prefHeight="59.0" prefWidth="561.0" styleClass="label2" text="LUNATIK 420" textFill="#ab2f2f">
+        </Label>
+    </children>
+</AnchorPane>
