@@ -247,6 +247,7 @@ public class ScreenA {
 
 
         // Establecer conexiones para cada vértice
+
         grafo.agregarArista(v0, v1, 5);
         grafo.agregarArista(v0, v4, 1);
         grafo.agregarArista(v0, v6, 3);
@@ -256,6 +257,7 @@ public class ScreenA {
 
         grafo.agregarArista(v2, v1, 2);
         grafo.agregarArista(v2, v5, 9);
+
         grafo.agregarArista(v2, v3, 1);
 
         grafo.agregarArista(v3, v2, 1);
@@ -295,7 +297,7 @@ public class ScreenA {
         Vertice fin = v9;
 
         List<Position> camino = grafo.dijkstra(inicio, fin);
-
+        grafo.imprimirCamino(camino);
         return camino;
 
     }

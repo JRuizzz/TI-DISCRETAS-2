@@ -16,6 +16,8 @@ public class Grafo {
     private List<Vertice> vertices;
     private List<Arista> edges;
 
+
+
     public Grafo() {
         inicializarMatrizAdyacencia();
         cantidadVertices = 50; // Inicializar la cantidad de vértices en 0
@@ -31,28 +33,16 @@ public class Grafo {
     }
 
     public Arista agregarArista(Vertice v1, Vertice v2, int peso) {
+        if(peso<0){
+            return null;
+        } else if (v2==null || v1==null){
+            return null;
+        }
         Arista newEdge = new Arista(v1, v2, peso);
         edges.add(newEdge);
         return newEdge;
     }
-
-    public void removeVertex(Vertice v) {
-        vertices.remove(v);
-        edges.removeIf(e -> e.hasVertex(v));
-    }
-
-    public void removeEdge(Vertice e) {
-        edges.remove(e);
-    }
-
-    public List<Vertice> getVertices() {
-        return vertices;
-    }
-
-    public List<Arista> getEdges() {
-        return edges;
-    }
-
+  
     // ---------------------------------------------------------------------------------------------------//
     public List<Position> dijkstra(Vertice inicio, Vertice fin) {
         // Inicializar distancias y visitados
@@ -83,7 +73,7 @@ public class Grafo {
 
             for (Arista arista : edges) {
                 if (arista.hasVertex(actual)) {
-                    Vertice vecino = arista.getOtherVertex(actual);
+                    Vertice vecino = arista.getOtroVertice(actual);
                     int nuevaDistancia = distancia[actual.getId()] + arista.getPeso();
 
                     if (nuevaDistancia < distancia[vecino.getId()]) {
@@ -109,22 +99,18 @@ public class Grafo {
         return camino;
     }
 
-
-    private void inicializarMatrizAdyacencia() {
-        for (int i = 0; i < cantidadVertices; i++) {
-            for (int j = 0; j < cantidadVertices; j++) {
-                matrizAdyacencia[i][j] = 0;
-            }
-        }
-    }
-
+    // ---------------------------------------------------------------------------------------------------//
+    
+=======
+    // ---------------------------------------------------------------------------------------------------//
+    
     public Vertice getVertice(int id) {
         for (Vertice vertice : vertices) {
             if (vertice.getId() == id) {
                 return vertice;
             }
         }
-        return null;  // Vértice no encontrado
+        return null; 
     }
     // ---------------------------------------------------------------------------------------------------//
     public List<Position> floydWarshall(Vertice inicio, Vertice fin) {
@@ -141,7 +127,6 @@ public class Grafo {
             }
         }
 
-        // Calcular los caminos más cortos entre todos los pares de vértices
         for (int k = 0; k < n; k++) {
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) {
@@ -165,9 +150,8 @@ public class Grafo {
         }
 
         // Añadir la posición del último vértice al camino
-        camino.add(vertices.get(verticeFin).getPosicion());
-
-        return camino;
+        camino.add(vertices.get(verticeFin).getPosicion())
+          return camino;
     }
     // ---------------------------------------------------------------------------------------------------//
     public void imprimirCamino(List<Position> camino) {
@@ -177,4 +161,15 @@ public class Grafo {
         }
     }
 
+    public int getCantidadVertices() {
+        return cantidadVertices;
+    }
+
+    public List<Vertice> getVertices() {
+        return vertices;
+    }
+
+    public List<Arista> getEdges() {
+        return edges;
+    }
 }
